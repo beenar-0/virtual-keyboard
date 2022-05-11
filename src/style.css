@@ -28,7 +28,7 @@ body {
 }
 
 .container {
-    width: 1640px;
+    width: 1040px;
     flex-wrap: wrap;
     display: flex;
     flex-direction: column;
@@ -37,53 +37,59 @@ body {
 }
 
 .row {
+    width: max-content;
     display: flex;
     gap: 10px;
-}
-
-.btn.caps {
-    width: 160px;
-    background: var(--func);
-}
-
-.btn.enter{
-    width: 260px;
-    background: var(--func);
-}
-
-.btn.backspace,
-.btn.shift {
-    width: 210px;
-    background: var(--func);
-}
-
-.btn.space {
-    width: 760px;
-}
-
-.btn.del,
-.btn.arr,
-.btn.ctr,
-.btn.win,
-.btn.alt,
-.btn.tab {
-    background: var(--func);
-}
-
-.btn:active {
-    background: var(--active);
 }
 
 .btn {
     transition: 0.1s;
     color: white;
     font-weight: bold;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    font-size: 25px;
+    font-size: 20px;
     background: #4E5754;
+}
+
+.btn.caps {
+    width: 100px;
+    background: var(--func);
+}
+
+.btn.enter{
+    width: 160px;
+    background: var(--func);
+}
+
+.backspace,
+.shift {
+    width: 130px;
+    background: var(--func);
+}
+
+.btn.space {
+    width: 480px;
+}
+
+
+
+.btn._active {
+    background: var(--active) !important;
+    border-radius: 10%;
+}
+
+
+
+.del,
+.arr,
+.ctr,
+.win,
+.alt,
+.tab {
+    background: var(--func);
 }
