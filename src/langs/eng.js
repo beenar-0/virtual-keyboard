@@ -66,7 +66,7 @@ export default [
     },
     {
         small: 'Backspace',
-        shift: '',
+        shift: 'null',
         code: 'Backspace',
     },
     {
@@ -282,12 +282,12 @@ export default [
     {
         small: 'Win',
         shift: 'null',
-        code: 'OSLeft',
+        code: 'MetaLeft',
     },
     {
         small: 'Alt',
         shift: 'null',
-        code: 'AltLeft altKey',
+        code: 'AltLeft',
     },
     {
         small: ' ',
@@ -297,7 +297,7 @@ export default [
     {
         small: 'Alt',
         shift: 'null',
-        code: 'AltRight altKey',
+        code: 'AltRight',
     },
     {
         small: 'Ctrl',

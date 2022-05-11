@@ -1,10 +1,17 @@
+import render from "./render";
+
 export default class Key {
     constructor(low, up, code) {
         this.code = code
         this.low = low
-        this.up = up
+        if (up === 'null') this.up = low
+        else this.up = up
+        this.isFunc = !code.match(/^Key[A-Z]$/);
+        console.log(this)
     }
-    create(){
-        return 'aboba'
+
+    setActive(){
+
     }
+
 }
