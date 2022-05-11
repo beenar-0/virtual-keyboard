@@ -14,7 +14,15 @@ window.addEventListener('keyup', unpress)
 
 
 function press() {
+    console.log(event.code)
+    if (!keyboard[event.code]['key'].isFunc) {
+        keyboard.textarea.value += keyboard[event.code].innerText
+        keyboard.textValue += keyboard[event.code].innerText
+    }
 
+    if (event.code === 'Backspace') {
+        keyboard.textarea.value = keyboard.textarea.value.substring(0, keyboard.textarea.value.length - 1)
+    }
 
     if (event.code === 'CapsLock') {
         keyboard.isCaps = !keyboard.isCaps

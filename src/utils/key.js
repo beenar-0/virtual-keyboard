@@ -6,7 +6,8 @@ export default class Key {
         this.low = low
         if (up === 'null') this.up = low
         else this.up = up
-        this.isFunc = !code.match(/^Key[A-Z]$/);
+        this.isCapsable = !code.match(/^Key[A-Z]$/);
+        this.isFunc = !code.match(/^Key[A-Z]|BracketLeft|Backquote|Slash|Period|Comma|Quote|Semicolon|Backslash|BracketRight$/);
     }
 
     setActive(){

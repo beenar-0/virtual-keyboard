@@ -21,14 +21,17 @@ export default class Keyboard {
 
     isCaps = false
 
-// капс+/шифт-1 капс-/шифт+1 капс+/шифт+ капс-/шифт+1
+    textValue = ''
+
     build(isShift) {
         document.body.innerHTML = ''
+        this.container = render('div', ['container'], null, document.body)
+        this.textarea = render('textarea', ['textarea'], null, this.container, ['cols', 60], ['rows', 5])
+        this.textarea.value = this.textValue
         let keyContent
         if (isShift) keyContent = 'up'
         else keyContent = 'low'
-        this.container = render('div', ['container'], null, document.body)
-        render('textarea', ['textarea'], null, this.container, ['cols', 60], ['rows', 5])
+
         this.keys.forEach((item) => {
             let rowContainer = render('div', ['row'], null, this.container)
             item.forEach((el) => {
@@ -91,13 +94,17 @@ export default class Keyboard {
                     if (key['code'] === el) {
                         element = new Key(key['small'], key['shift'], key['code'])
                         if (key['code'] === 'CapsLock' && this.isCaps) classList.push('_active')
-                        if (this.isCaps && this.isShift) this[element['code']] = render('div', classList, element[keyContent], rowContainer)
-                        else if (this.isCaps && !this.isShift) {
-                            if (element.isFunc) this[element['code']] = render('div', classList, element['low'], rowContainer)
-                            else this[element['code']] = render('div', classList, element['up'], rowContainer)
-                        }
-                        else {
+                        if (this.isCaps && !this.isShift) {
+                            if (element.isCapsable) {
+                                this[element['code']] = render('div', classList, element['low'], rowContainer)
+                                this[element['code']]['key'] = element
+                            } else {
+                                this[element['code']] = render('div', classList, element['up'], rowContainer)
+                                this[element['code']]['key'] = element
+                            }
+                        } else {
                             this[element['code']] = render('div', classList, element[keyContent], rowContainer)
+                            this[element['code']]['key'] = element
                         }
                     }
                 })
