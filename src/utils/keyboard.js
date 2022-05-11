@@ -19,16 +19,9 @@ export default class Keyboard {
 
     isShift = false
 
-    shift() {
-        if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
-            if (this.isShift) return
-            this.isShift = !this.isShift
-            this.build(this.isShift)
-            if (this[event.code]) this[event.code].classList.add('_active')
-        }
-    }
+    isCaps = false
 
-
+// капс+/шифт-1 капс-/шифт+1 капс+/шифт+ капс-/шифт+1
     build(isShift) {
         document.body.innerHTML = ''
         let keyContent
@@ -97,7 +90,15 @@ export default class Keyboard {
                     }
                     if (key['code'] === el) {
                         element = new Key(key['small'], key['shift'], key['code'])
-                        this[element['code']] = render('div', classList, element[keyContent], rowContainer)
+                        if (key['code'] === 'CapsLock' && this.isCaps) classList.push('_active')
+                        if (this.isCaps && this.isShift) this[element['code']] = render('div', classList, element[keyContent], rowContainer)
+                        else if (this.isCaps && !this.isShift) {
+                            if (element.isFunc) this[element['code']] = render('div', classList, element['low'], rowContainer)
+                            else this[element['code']] = render('div', classList, element['up'], rowContainer)
+                        }
+                        else {
+                            this[element['code']] = render('div', classList, element[keyContent], rowContainer)
+                        }
                     }
                 })
             })

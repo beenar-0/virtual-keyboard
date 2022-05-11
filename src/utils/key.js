@@ -7,7 +7,6 @@ export default class Key {
         if (up === 'null') this.up = low
         else this.up = up
         this.isFunc = !code.match(/^Key[A-Z]$/);
-        console.log(this)
     }
 
     setActive(){
