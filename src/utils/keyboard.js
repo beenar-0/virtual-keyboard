@@ -5,7 +5,7 @@ import Key from "./key";
 // render(elem, [classList], [child], parent = null, ...attributes)
 
 export default class Keyboard {
-    constructor(lang) {
+    constructor(lang = 'eng') {
         this.lang = lang
     }
 
@@ -23,10 +23,16 @@ export default class Keyboard {
 
     textValue = ''
 
+    isAlt = false
+
+    isCtr = false
+
     build(isShift) {
         document.body.innerHTML = ''
         this.container = render('div', ['container'], null, document.body)
         this.textarea = render('textarea', ['textarea'], null, this.container, ['cols', 60], ['rows', 5])
+        this.textarea.autofocus = true
+        this.textarea.spellcheck = false
         this.textarea.value = this.textValue
         let keyContent
         if (isShift) keyContent = 'up'
