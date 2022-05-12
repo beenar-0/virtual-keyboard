@@ -112,6 +112,9 @@ export default class Keyboard {
                             this[element['code']] = render('div', classList, element[keyContent], rowContainer)
                             this[element['code']]['key'] = element
                         }
+                        this[element['code']].addEventListener('click', ()=>{
+
+                        })
                     }
                 })
             })

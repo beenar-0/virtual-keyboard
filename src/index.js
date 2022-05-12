@@ -13,10 +13,13 @@ window.addEventListener('keydown', press)
 window.addEventListener('keyup', unpress)
 
 
+
+
 function press() {
+    event.preventDefault()
     keyboard.textarea.focus()
     console.log(event.code)
-    event.preventDefault()
+
 
     if (event.code === 'Space') {
         keyboard.textarea.value += ' '
