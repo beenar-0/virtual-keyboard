@@ -18,7 +18,6 @@ window.addEventListener('keyup', unpress)
 function press() {
     event.preventDefault()
     keyboard.textarea.focus()
-    console.log(event.code)
 
 
     if (event.code === 'Space') {
@@ -31,7 +30,12 @@ function press() {
     }
 
     if (!keyboard[event.code]['key']['isFunc']) {
-        keyboard.textarea.value += keyboard[event.code].innerText
+        let pos =  keyboard.textarea.selectionStart
+        let str = keyboard.textarea.value.split('')
+        str.splice(pos,0, keyboard[event.code].innerHTML)
+        keyboard.textarea.value = str.join('')
+        keyboard.textarea.selectionStart = pos + 1
+        keyboard.textarea.selectionEnd = keyboard.textarea.selectionStart
     }
 
     if (event.code === 'Backspace') {
