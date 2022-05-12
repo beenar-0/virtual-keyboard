@@ -1,0 +1,95 @@
+:root {
+    --func: #293133;
+    --active: #003153;
+}
+
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+.textarea {
+    padding: 10px;
+    resize: none;
+    border: 4px solid black;
+    font-size: 30px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.container {
+    width: 1040px;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: max-content;
+}
+
+.row {
+    width: max-content;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    transition: 0.1s;
+    color: white;
+    font-weight: bold;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 20px;
+    background: #4E5754;
+}
+
+.btn.caps {
+    width: 100px;
+    background: var(--func);
+}
+
+.btn.enter{
+    width: 160px;
+    background: var(--func);
+}
+
+.backspace,
+.shift {
+    width: 130px;
+    background: var(--func);
+}
+
+.btn.space {
+    width: 480px;
+}
+
+
+
+.btn._active {
+    background: var(--active) !important;
+    border-radius: 10%;
+}
+
+
+
+.del,
+.arr,
+.ctr,
+.win,
+.alt,
+.tab {
+    background: var(--func);
+}
