@@ -1,13 +1,10 @@
 export default class Localstore {
-    constructor() {
-    }
+  static set(name, value) {
+    localStorage.setItem(name, value);
+  }
 
-    set(name, value) {
-        localStorage.setItem(name, value)
-    }
-
-    get(name) {
-        if (localStorage.getItem(name)) return localStorage.getItem(name)
-        else return 'eng'
-    }
+  static get(name) {
+    if (localStorage.getItem(name)) return localStorage.getItem(name);
+    return 'eng';
+  }
 }
