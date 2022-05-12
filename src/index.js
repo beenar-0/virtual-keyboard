@@ -2,9 +2,11 @@ import render from './utils/render';
 import key from './utils/key';
 import langs from './langs/langs';
 import Keyboard from './utils/keyboard';
+import Localstore from "./utils/localstore";
 import './style.css';
 
-let currentLang = 'ru'
+let store = new Localstore()
+let currentLang = store.get('BeenarLang')
 const keyboard = new Keyboard()
 keyboard.build(false, currentLang)
 keyboard.textarea.focus()
@@ -34,6 +36,7 @@ function press() {
         if (currentLang === 'eng') currentLang = 'ru'
         else currentLang = 'eng'
         keyboard.build(false, currentLang)
+        store.set('BeenarLang', currentLang)
     }
 
 

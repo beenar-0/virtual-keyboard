@@ -2,11 +2,12 @@ export default class Localstore {
     constructor() {
     }
 
-    localSet(name, value) {
+    set(name, value) {
         localStorage.setItem(name, value)
     }
 
-    localGet(name) {
+    get(name) {
         if (localStorage.getItem(name)) return localStorage.getItem(name)
+        else return 'eng'
     }
 }
