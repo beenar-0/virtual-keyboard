@@ -5,8 +5,7 @@ import Key from "./key";
 // render(elem, [classList], [child], parent = null, ...attributes)
 
 export default class Keyboard {
-    constructor(lang = 'eng') {
-        this.lang = lang
+    constructor() {
     }
 
     keys = [
@@ -27,7 +26,8 @@ export default class Keyboard {
 
     isCtr = false
 
-    build(isShift) {
+    build(isShift = false, lang) {
+        this.lang = lang
         document.body.innerHTML = ''
         this.container = render('div', ['container'], null, document.body)
         this.textarea = render('textarea', ['textarea'], null, this.container, ['cols', 60], ['rows', 5])

@@ -4,20 +4,37 @@ import langs from './langs/langs';
 import Keyboard from './utils/keyboard';
 import './style.css';
 
-// render(elem, [classList], [child], parent = null, ...attributes)
-
-const keyboard = new Keyboard('ru')
-keyboard.build()
+let currentLang = 'ru'
+const keyboard = new Keyboard()
+keyboard.build(false, currentLang)
 keyboard.textarea.focus()
 window.addEventListener('keydown', press)
 window.addEventListener('keyup', unpress)
 
 
+function click() {
+    if (event.target.classList.contains('btn')) {
+        langs[currentLang].forEach((item)=>{
+            if (event.target.innerHTML === item['small'] || event.target.innerHTML === item['shift']) {
+                event.code = item.code
+                press()
+            }
 
+        })
+    }
+}
 
 function press() {
     event.preventDefault()
     keyboard.textarea.focus()
+
+    if (event.code === 'ControlLeft' || event.code === 'ControlRight') keyboard.isCtr = true
+    if (event.code === 'AltLeft' || event.code === 'AltRight') keyboard.isAlt = true
+    if (keyboard.isCtr && keyboard.isAlt) {
+        if (currentLang === 'eng') currentLang = 'ru'
+        else currentLang = 'eng'
+        keyboard.build(false, currentLang)
+    }
 
 
     if (event.code === 'Space') {
@@ -66,13 +83,13 @@ function press() {
 
     if (event.code === 'CapsLock') {
         keyboard.isCaps = !keyboard.isCaps
-        keyboard.build()
+        keyboard.build(false, currentLang)
     }
     if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
 
-        if (this.isShift) return
+        if (keyboard.isShift) return
         this.isShift = !this.isShift
-        keyboard.build(this.isShift)
+        keyboard.build(this.isShift, currentLang)
         if (event.code) keyboard[event.code].classList.add('_active')
     }
     if (keyboard[event.code] && event.code !== 'CapsLock') keyboard[event.code].classList.add('_active')
@@ -80,10 +97,12 @@ function press() {
 }
 
 function unpress() {
+    keyboard.isCtr = false
+    keyboard.isAlt = false
     if (keyboard[event.code] && event.code !== 'CapsLock') keyboard[event.code].classList.remove('_active')
     if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
         this.isShift = !this.isShift
-        keyboard.build(this.isShift)
+        keyboard.build(this.isShift, currentLang)
         if (event.code) keyboard[event.code].classList.remove('_active')
     }
 }

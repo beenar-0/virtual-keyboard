@@ -205,7 +205,7 @@ export default [
         code: 'Quote',
     },
     {
-        small: 'ENTER',
+        small: 'Enter',
         shift: 'null',
         code: 'Enter',
     },
