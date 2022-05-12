@@ -6,12 +6,14 @@ import Keyboard from './utils/keyboard';
 import Localstore from './utils/localstore';
 import './style.css';
 /* eslint-enable no-unused-vars */
+const hint = document.createElement('div');
+hint.innerHTML = 'СTR+ALT смена языка. Клавиатура разработана под windows';
 
 let currentLang = Localstore.get('BeenarLang');
 const keyboard = new Keyboard();
 keyboard.build(currentLang);
 keyboard.textarea.focus();
-
+keyboard.container.append(hint);
 function press() {
   event.preventDefault();
   keyboard.textarea.focus();
